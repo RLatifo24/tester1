@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raissa Mezine - AI Engineering Student</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#ec4899',
+                        secondary: '#c084fc',
+                        dark: '#1a0a1e',
+                        darker: '#0c0414',
+                        light: '#fdf2f8',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'text': 'text 5s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        text: {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(-45deg, #0c0414, #1a0a1e, #180412, #0f0518);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fdf2f8;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Language handling */
+        body.lang-en [lang="fr"] { display: none !important; }
+        body.lang-fr [lang="en"] { display: none !important; }
+
+        .glass-card {
+            background: rgba(26, 10, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(236, 72, 153, 0.15);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #f472b6, #c084fc, #fb7185);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: text 5s ease infinite;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -5px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ec4899;
+            box-shadow: 0 0 10px #ec4899;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 0;
+            top: 18px;
+            bottom: -20px;
+            width: 2px;
+            background: rgba(236, 72, 153, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0c0414;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ec4899;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c084fc;
+        }
+
+        /* Profile image styling */
+        .profile-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(to right, #ec4899, #a855f7, #f472b6);
+            animation: text 5s ease infinite;
+        }
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #0c0414;
+        }
+    </style>
+</head>
+<body class="lang-fr antialiased selection:bg-primary selection:text-white">
+
+    <!-- Background Effects -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-pink-600/30 rounded-full mix-blend-screen filter blur-3xl opacity-60 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-600/30 rounded-full mix-blend-screen filter blur-3xl opacity-60 animate-blob" style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-32 left-1/2 w-[500px] h-[500px] bg-fuchsia-500/30 rounded-full mix-blend-screen filter blur-3xl opacity-60 animate-blob" style="animation-delay: 4s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-rose-400/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob" style="animation-delay: 6s;"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-card border-b-0 border-white/5 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-display font-bold text-2xl tracking-wider gradient-text">RM.</a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-300 hover:text-white transition-colors text-sm uppercase tracking-wider font-medium">
+                        <span lang="fr">À propos</span><span lang="en">About</span>
+                    </a>
+                    <a href="#skills" class="text-gray-300 hover:text-white transition-colors text-sm uppercase tracking-wider font-medium">
+                        <span lang="fr">Compétences</span><span lang="en">Skills</span>
+                    </a>
+                    <a href="#experience" class="text-gray-300 hover:text-white transition-colors text-sm uppercase tracking-wider font-medium">
+                        <span lang="fr">Expérience</span><span lang="en">Experience</span>
+                    </a>
+                    <a href="#projects" class="text-gray-300 hover:text-white transition-colors text-sm uppercase tracking-wider font-medium">
+                        <span lang="fr">Projets</span><span lang="en">Projects</span>
+                    </a>
+                    <a href="#contact" class="text-gray-300 hover:text-white transition-colors text-sm uppercase tracking-wider font-medium">
+                        <span lang="fr">Contact</span><span lang="en">Contact</span>
+                    </a>
+                    
+                    <!-- Language Toggle -->
+                    <button id="lang-toggle" class="px-3 py-1 rounded-full border border-gray-600 hover:border-primary text-sm font-medium transition-all hover:text-primary flex items-center gap-2">
+                        <i class="fas fa-globe"></i>
+                        <span id="lang-text">FR</span>
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button id="mobile-lang-toggle" class="px-2 py-1 rounded border border-gray-600 text-xs font-medium">
+                        <span id="mobile-lang-text">FR</span>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-white/10 absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md">
+                    <span lang="fr">À propos</span><span lang="en">About</span>
+                </a>
+                <a href="#skills" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md">
+                    <span lang="fr">Compétences</span><span lang="en">Skills</span>
+                </a>
+                <a href="#experience" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md">
+                    <span lang="fr">Expérience</span><span lang="en">Experience</span>
+                </a>
+                <a href="#projects" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md">
+                    <span lang="fr">Projets</span><span lang="en">Projects</span>
+                </a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md">
+                    <span lang="fr">Contact</span><span lang="en">Contact</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative px-4">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="order-2 lg:order-1 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+                <p class="text-primary font-medium tracking-widest uppercase mb-3">
+                    <span lang="fr">Bonjour, je suis</span><span lang="en">Hello, I am</span>
+                </p>
+                <h1 class="text-5xl md:text-7xl font-display font-bold mb-4 leading-tight">
+                    <span class="gradient-text animate-text inline-block">RAISSA MEZINE</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl font-medium text-gray-300 mb-6">
+                    <span lang="fr">Étudiante Ingénieure en Intelligence Artificielle</span>
+                    <span lang="en">Artificial Intelligence Engineering Student</span>
+                </h2>
+                <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    <span lang="fr">Étudiante en Master 2 Intelligence Artificielle et Apprentissage Automatique à Aix-Marseille Université. À la recherche d'un stage de fin d'études de 5 à 6 mois à partir d'avril/mai pour mettre en pratique mes compétences en IA et Data Science.</span>
+                    <span lang="en">Master 2 student in Artificial Intelligence and Machine Learning at Aix-Marseille University. Looking for a 5 to 6 months end-of-studies internship starting April/May to apply my skills in AI and Data Science.</span>
+                </p>
+                
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                    <a href="#contact" class="px-8 py-3 rounded-full bg-primary hover:bg-pink-600 text-white font-medium transition-all transform hover:-translate-y-1 shadow-[0_0_20px_rgba(236,72,153,0.5)]">
+                        <span lang="fr">Me Contacter</span><span lang="en">Contact Me</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/raissa-mezine" target="_blank" class="px-8 py-3 rounded-full glass-card hover:bg-white/10 text-white font-medium transition-all transform hover:-translate-y-1 flex items-center gap-2">
+                        <i class="fab fa-linkedin text-xl text-[#0A66C2]"></i> LinkedIn
+                    </a>
+                </div>
+                
+                <div class="mt-10 flex items-center justify-center lg:justify-start gap-6 text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-map-marker-alt text-primary"></i>
+                        <span>Marseille, France</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-car text-primary"></i>
+                        <span lang="fr">Mobilité: Toute la France</span>
+                        <span lang="en">Mobility: All of France</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Picture -->
+            <div class="order-1 lg:order-2 flex justify-center lg:justify-end" data-aos="fade-left" data-aos-duration="1000">
+                <div class="profile-container animate-float">
+                    <img src="https://z-cdn-media.chatglm.cn/files/9864ff20-8a07-41bd-8d9b-d1d75b6868fc.jpeg?auth_key=1878966003-dfb519c24c794e24adbb852f77fbfad2-0-27838d805c4e9ea74c442420a0663284" alt="Raissa Mezine" class="profile-img shadow-2xl">
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+            <a href="#about" class="text-gray-400 hover:text-white">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-display font-bold mb-4">
+                    <span lang="fr">Mes Compétences</span>
+                    <span lang="en">My Skills</span>
+                </h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- AI / ML / Deep Learning -->
+                <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-pink-500/20 rounded-xl flex items-center justify-center mb-6 text-pink-400 text-2xl">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Machine & Deep Learning</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">PyTorch</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">TensorFlow</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Keras</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">scikit-learn</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">pandas</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">numpy</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">OpenCV</span>
+                    </div>
+                </div>
+
+                <!-- NLP / LLM -->
+                <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6 text-purple-400 text-2xl">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">NLP / LLM / GenAI</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Transformers</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Hugging Face</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">LangChain</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">RAG</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Prompt Engineering</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">LSTM / GRU</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">BERT</span>
+                    </div>
+                </div>
+
+                <!-- Languages & DB -->
+                <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-fuchsia-500/20 rounded-xl flex items-center justify-center mb-6 text-fuchsia-400 text-2xl">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">
+                        <span lang="fr">Langages & BDD</span>
+                        <span lang="en">Languages & DB</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Python</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Java</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">JavaScript</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">C/C++</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">SQL</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">PostgreSQL</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">MongoDB</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Firebase</span>
+                    </div>
+                </div>
+
+                <!-- Dev & APIs -->
+                <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-14 h-14 bg-rose-500/20 rounded-xl flex items-center justify-center mb-6 text-rose-400 text-2xl">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Développement & APIs</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">FastAPI</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Streamlit</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">REST APIs</span>
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 lg:col-span-2" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-14 h-14 bg-violet-500/20 rounded-xl flex items-center justify-center mb-6 text-violet-400 text-2xl">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">
+                        <span lang="fr">Outils & Environnements</span>
+                        <span lang="en">Tools & Environments</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Git</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Linux</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Jupyter</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">n8n</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">OCR</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Agile / Scrum</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm">Microsoft Copilot</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Education Section -->
+    <section id="experience" class="py-20 relative bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+                <!-- Experience -->
+                <div>
+                    <div class="flex items-center gap-4 mb-10" data-aos="fade-right">
+                        <i class="fas fa-briefcase text-3xl text-primary"></i>
+                        <h2 class="text-3xl font-display font-bold">
+                            <span lang="fr">Expérience</span>
+                            <span lang="en">Experience</span>
+                        </h2>
+                    </div>
+
+                    <div class="relative pl-6 space-y-10">
+                        
+                        <!-- Exp 1 -->
+                        <div class="relative" data-aos="fade-up">
+                            <div class="timeline-line"></div>
+                            <div class="timeline-dot"></div>
+                            <div class="glass-card p-6 rounded-xl ml-4">
+                                <span class="text-sm text-primary font-medium mb-1 inline-block">02/2026 - 04/2026</span>
+                                <h3 class="text-xl font-bold text-white mb-1">
+                                    <span lang="fr">Stage en NLP (Transformers & LLM)</span>
+                                    <span lang="en">NLP Internship (Transformers & LLM)</span>
+                                </h3>
+                                <h4 class="text-gray-400 mb-4 font-medium">Laboratoire d'Informatique et Systèmes (LIS)</h4>
+                                <p class="text-gray-300 text-sm mb-3">
+                                    <strong lang="fr">Thème :</strong><strong lang="en">Theme :</strong> 
+                                    <span lang="fr">Résolution de coréférence multilingue dans des documents</span>
+                                    <span lang="en">Multilingual coreference resolution in documents</span>
+                                </p>
+                                <ul class="list-disc list-inside text-gray-400 text-sm space-y-2">
+                                    <li>
+                                        <span lang="fr">Conception d'un pipeline NLP : détection de mentions (DistilBERT), regroupement avec classifieur MLP pairwise.</span>
+                                        <span lang="en">Design of an NLP pipeline: mention detection (DistilBERT), clustering with pairwise MLP classifier.</span>
+                                    </li>
+                                    <li>
+                                        <span lang="fr">Implémentation d'une solution end-to-end basée sur des LLM via Hugging Face et prompt engineering.</span>
+                                        <span lang="en">Implementation of an end-to-end solution based on LLMs via Hugging Face and prompt engineering.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Exp 2 -->
+                        <div class="relative" data-aos="fade-up">
+                            <div class="timeline-line" style="bottom: 100%;"></div>
+                            <div class="timeline-dot"></div>
+                            <div class="glass-card p-6 rounded-xl ml-4">
+                                <span class="text-sm text-primary font-medium mb-1 inline-block">01/2024 - 07/2024</span>
+                                <h3 class="text-xl font-bold text-white mb-1">
+                                    <span lang="fr">Développeuse Odoo</span>
+                                    <span lang="en">Odoo Developer</span>
+                                </h3>
+                                <h4 class="text-gray-400 mb-4 font-medium">Smartest Algeria</h4>
+                                <ul class="list-disc list-inside text-gray-400 text-sm space-y-2">
+                                    <li>
+                                        <span lang="fr">Développement et personnalisation de modules Odoo (CRM, Vente, Achat).</span>
+                                        <span lang="en">Development and customization of Odoo modules (CRM, Sales, Purchase).</span>
+                                    </li>
+                                    <li>
+                                        <span lang="fr">Intégration de techniques d'OCR et d'IA pour automatiser le remplissage de formulaires à partir d'images.</span>
+                                        <span lang="en">Integration of OCR and AI techniques to automate form filling from document images.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Education & Publications -->
+                <div>
+                    <div class="flex items-center gap-4 mb-10" data-aos="fade-left">
+                        <i class="fas fa-graduation-cap text-3xl text-secondary"></i>
+                        <h2 class="text-3xl font-display font-bold">
+                            <span lang="fr">Formations</span>
+                            <span lang="en">Education</span>
+                        </h2>
+                    </div>
+
+                    <div class="relative pl-6 space-y-8 mb-12">
+                        <!-- Edu 1 -->
+                        <div class="relative" data-aos="fade-up">
+                            <div class="timeline-line"></div>
+                            <div class="timeline-dot" style="background: #c084fc; box-shadow: 0 0 10px #c084fc;"></div>
+                            <div class="glass-card p-6 rounded-xl ml-4 border-purple-500/30">
+                                <span class="text-sm text-purple-400 font-medium mb-1 inline-block">
+                                    <span lang="fr">2024 - présent</span><span lang="en">2024 - present</span>
+                                </span>
+                                <h3 class="text-lg font-bold text-white mb-1">
+                                    <span lang="fr">Master Intelligence artificielle et apprentissage automatique (IAAA)</span>
+                                    <span lang="en">Master in Artificial Intelligence and Machine Learning (IAAA)</span>
+                                </h3>
+                                <h4 class="text-gray-400">Université d'Aix-Marseille</h4>
+                            </div>
+                        </div>
+
+                        <!-- Edu 2 -->
+                        <div class="relative" data-aos="fade-up">
+                            <div class="timeline-line" style="bottom: 100%;"></div>
+                            <div class="timeline-dot" style="background: #c084fc; box-shadow: 0 0 10px #c084fc;"></div>
+                            <div class="glass-card p-6 rounded-xl ml-4 border-purple-500/30">
+                                <span class="text-sm text-purple-400 font-medium mb-1 inline-block">2021 - 2023</span>
+                                <h3 class="text-lg font-bold text-white mb-1">
+                                    <span lang="fr">Master systèmes informatiques intelligents</span>
+                                    <span lang="en">Master in Intelligent Computer Systems</span>
+                                </h3>
+                                <h4 class="text-gray-400">USTHB, Alger</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Publications -->
+                    <div class="flex items-center gap-4 mb-6 mt-12" data-aos="fade-left">
+                        <i class="fas fa-book-open text-2xl text-pink-400"></i>
+                        <h2 class="text-2xl font-display font-bold">Publications</h2>
+                    </div>
+                    <div class="space-y-4" data-aos="fade-up">
+                        <div class="glass-card p-5 rounded-xl border-pink-500/20">
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                Raissa Mezine & al. <strong>Integrating Non-encrypted and Encrypted Features for Enhanced Detection of Encrypted Network Attacks</strong>. Computer and Communication Engineering (2024). 
+                                <a href="https://doi.org/10.1007/978-3-031-71079-7_5" target="_blank" class="text-primary hover:underline block mt-1">doi.org/10.1007/978-3-031-71079-7_5</a>
+                            </p>
+                        </div>
+                        <div class="glass-card p-5 rounded-xl border-pink-500/20">
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                Raissa Mezine & al. <strong>Enhancing Network Intrusion Detection Systems: A Review of Feature Selection Algorithms for Streaming Data Processing</strong>. 21st Annual International Conference on Privacy, Security and Trust (2024). 
+                                <a href="https://doi.org/10.1109/PST62714.2024.10788073" target="_blank" class="text-primary hover:underline block mt-1">doi.org/10.1109/PST62714.2024.10788073</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-display font-bold mb-4">
+                    <span lang="fr">Mes Projets</span>
+                    <span lang="en">My Projects</span>
+                </h2>
+                <div class="w-20 h-1 bg-secondary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 flex flex-col h-full border-t border-pink-500/30" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-8 flex-grow">
+                        <div class="w-12 h-12 bg-pink-500/20 rounded-full flex items-center justify-center mb-6 text-pink-400">
+                            <i class="fas fa-robot text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">
+                            <span lang="fr">Agent IA avec RAG pour Q&A intelligent</span>
+                            <span lang="en">AI Agent with RAG for intelligent Q&A</span>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                            <span lang="fr">Conception d'un agent IA combinant RAG et mécanismes de décision. Pipeline complète avec extraction, embeddings (sentence-transformers), recherche sémantique (Chroma), LLM open-source (Hugging Face) et interface Streamlit.</span>
+                            <span lang="en">Design of an AI agent combining RAG and decision mechanisms. Complete pipeline with extraction, embeddings (sentence-transformers), semantic search (Chroma), open-source LLM (Hugging Face), and Streamlit interface.</span>
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-medium px-2 py-1 bg-white/10 rounded text-pink-300">RAG</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/10 rounded text-pink-300">Chroma</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/10 rounded text-pink-300">Hugging Face</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/10 rounded text-pink-300">Streamlit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 flex flex-col h-full border-t border-purple-500/30" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-8 flex-grow">
+                        <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mb-6 text-purple-400">
+                            <i class="fas fa-chart-pie text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">
+                            <span lang="fr">Mini-système agentique IA (KPI RH)</span>
+                            <span lang="en">Mini AI Agentic System (HR KPI)</span>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                            <span lang="fr">API FastAPI exposant des indicateurs RH (fichiers Excel). Agents IA capables de raisonner et coopérer via un assistant agentique. Intégration d'un serveur MCP avec observabilité OpenTelemetry.</span>
+                            <span lang="en">FastAPI API exposing HR indicators (Excel files). AI agents capable of reasoning and cooperating via an agentic assistant. Integration of an MCP server with OpenTelemetry observability.</span>
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-medium px-2 py-1 bg-white/10 rounded text-purple-300">FastAPI</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/10 rounded text-purple-300">AI Agents</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/10 rounded text-purple-300">MCP</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/10 rounded text-purple-300">OpenTelemetry</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 flex flex-col h-full border-t border-fuchsia-500/30" data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-8 flex-grow">
+                        <div class="w-12 h-12 bg-fuchsia-500/20 rounded-full flex items-center justify-center mb-6 text-fuchsia-400">
+                            <i class="fas fa-file-signature text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">
+                            <span lang="fr">Automatisation de propositions commerciales</span>
+                            <span lang="en">Sales Proposal Automation</span>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                            <span lang="fr">Workflow n8n connecté à Google Sheets API et OpenAI API pour générer automatiquement des propositions personnalisées. Création via Google Docs API et envoi par Gmail API.</span>
+                            <span lang="en">n8n workflow connected to Google Sheets API and OpenAI API to automatically generate personalized proposals. Creation via Google Docs API and sending via Gmail API.</span>
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-medium px-2 py-1 bg-white/10 rounded text-fuchsia-300">n8n</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/10 rounded text-fuchsia-300">OpenAI API</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/10 rounded text-fuchsia-300">Google APIs</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/10 rounded text-fuchsia-300">Automation</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer Section -->
+    <section id="contact" class="py-20 relative bg-darker border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-display font-bold mb-8" data-aos="fade-up">
+                <span lang="fr">Contactez-moi</span>
+                <span lang="en">Get In Touch</span>
+            </h2>
+            <p class="text-gray-400 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <span lang="fr">Je suis actuellement à la recherche d'un stage de fin d'études de 5 à 6 mois à partir d'avril/mai. N'hésitez pas à me contacter !</span>
+                <span lang="en">I am currently looking for a 5-6 month end-of-studies internship starting April/May. Feel free to contact me!</span>
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16" data-aos="fade-up" data-aos-delay="200">
+                <a href="mailto:raissamezine00@gmail.com" class="glass-card p-6 rounded-xl hover:bg-white/5 transition-colors flex flex-col items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xl">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-1">Email</h4>
+                        <p class="text-sm text-gray-400">raissamezine00@gmail.com</p>
+                    </div>
+                </a>
+                
+                <a href="tel:+33758287093" class="glass-card p-6 rounded-xl hover:bg-white/5 transition-colors flex flex-col items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary text-xl">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-1">
+                            <span lang="fr">Téléphone</span><span lang="en">Phone</span>
+                        </h4>
+                        <p class="text-sm text-gray-400">+33 7 58 28 70 93</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/raissa-mezine" target="_blank" class="glass-card p-6 rounded-xl hover:bg-white/5 transition-colors flex flex-col items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-[#0A66C2]/20 flex items-center justify-center text-[#0A66C2] text-xl">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-1">LinkedIn</h4>
+                        <p class="text-sm text-gray-400">raissa-mezine</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Languages -->
+            <div class="mb-16" data-aos="fade-up">
+                <h3 class="text-xl font-bold mb-6">
+                    <span lang="fr">Langues</span><span lang="en">Languages</span>
+                </h3>
+                <div class="flex justify-center gap-8">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400">FR</div>
+                        <div class="text-left">
+                            <p class="font-medium text-white">Français</p>
+                            <p class="text-xs text-gray-400">C2</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">EN</div>
+                        <div class="text-left">
+                            <p class="font-medium text-white">Anglais</p>
+                            <p class="text-xs text-gray-400">C1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">
+                    &copy; <span id="year"></span> Raissa Mezine. <span lang="fr">Tous droits réservés.</span><span lang="en">All rights reserved.</span>
+                </p>
+                <div class="flex gap-4 text-gray-500">
+                    <a href="https://www.linkedin.com/in/raissa-mezine" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="mailto:raissamezine00@gmail.com" class="hover:text-white transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+        });
+
+        // Current Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar blur on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-dark/80', 'backdrop-blur-md', 'shadow-lg');
+            } else {
+                nav.classList.remove('bg-dark/80', 'backdrop-blur-md', 'shadow-lg');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Language Toggle Logic
+        const body = document.body;
+        const langToggle = document.getElementById('lang-toggle');
+        const langText = document.getElementById('lang-text');
+        const mobileLangToggle = document.getElementById('mobile-lang-toggle');
+        const mobileLangText = document.getElementById('mobile-lang-text');
+
+        function toggleLanguage() {
+            if (body.classList.contains('lang-fr')) {
+                body.classList.remove('lang-fr');
+                body.classList.add('lang-en');
+                langText.textContent = 'EN';
+                mobileLangText.textContent = 'EN';
+                document.documentElement.lang = 'en';
+            } else {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-fr');
+                langText.textContent = 'FR';
+                mobileLangText.textContent = 'FR';
+                document.documentElement.lang = 'fr';
+            }
+        }
+
+        langToggle.addEventListener('click', toggleLanguage);
+        mobileLangToggle.addEventListener('click', toggleLanguage);
+    </script>
+</body>
+</html>
